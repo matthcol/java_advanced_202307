@@ -69,14 +69,14 @@ class MovieDemo {
         // create list with movies
         // - Barbie (2023)
         // - Oppenheimer (2023)
-        // - The Batman (2019)
+        // - The Batman (2022)
         // - Star Wars: Episode IV - A New Hope (1977)
         List<Movie> listMovies = new ArrayList<>(); // or new LinkedList<>()
         listMovies.add(new Movie("Barbie", 2023));
         listMovies.add(new Movie("Oppenheimer", 2023));
         Collections.addAll(
                 listMovies,
-                new Movie("The Batman", 2019),
+                new Movie("The Batman", 2022),
                 new Movie("Star Wars: Episode IV - A New Hope", 1977),
                 new Movie("Indiana Jones and the Last Crusade", 1989)
         );
@@ -93,7 +93,7 @@ class MovieDemo {
         List<Movie> movieList = List.of(
                 new Movie("Barbie", 2023),
                 new Movie("Oppenheimer", 2023),
-                new Movie("The Batman", 2019),
+                new Movie("The Batman", 2022),
                 new Movie("Star Wars: Episode IV - A New Hope", 1977),
                 new Movie("Indiana Jones and the Last Crusade", 1989)
         );
