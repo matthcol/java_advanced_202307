@@ -4,7 +4,9 @@ import org.example.data.Movie;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class MovieCollectionExercise {
 
@@ -26,6 +28,18 @@ public class MovieCollectionExercise {
         System.out.println("*** Exercise Set ***");
         System.out.println("Movie list (init): "  + movieList);
         // TODO: copy all movies in a Set and print it
+        Set<Movie> movieSet = new HashSet<>();
+
+        // Method 1: add movies from another collection with a loop
+        for (Movie movie : movieList){
+            movieSet.add(movie);
+        }
+
+        // Method 2: ??
+
+        // Method 3: ??
+
+        System.out.println("Movie set: "  +movieSet);
     }
 
     @Test
