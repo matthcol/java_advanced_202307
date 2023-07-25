@@ -24,10 +24,8 @@ class MovieDemo {
         System.out.println("*** demoConstructors ***");
         // default constructor
         Movie movie1 = new Movie();
-
         // constructor with title, year
         Movie movie2 = new Movie("Barbie", 2023);
-
         // constructor with all fields
         Movie movie3 = new Movie("Oppenheimer", 2023, 180);
 
@@ -36,10 +34,27 @@ class MovieDemo {
         // - Barbie (2023)
         // - Oppenheimer (2023)
 
-        Movie tab[] ={ movie1,movie2,movie3};
-        for(int i= 0;i<3; i++){
-            System.out.println(tab[i].toString());
+        Movie[] tabMovies = { movie1, movie2, movie3 };
+        // oldschool loop
+        for (int i = 0; i < 3; i++){
+            // NB: following line can be simplified by omitting .toString()
+            // System.out.println(" - " + tabMovies[i].toString());
+            System.out.println(" - "
+                    + tabMovies[i]
+                    + " ; duration = "
+                    + tabMovies[i].getDuration()
+                    + " mn"
+            );
         }
+        System.out.println();
+        // "foreach" loop (Java 5)
+        for (Movie movie: tabMovies){
+            System.out.println(" * " + movie
+                    + " ; duration = "
+                    + movie.getDuration()
+            );
+        }
+
         System.out.println();
     }
 

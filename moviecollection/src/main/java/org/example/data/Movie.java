@@ -61,10 +61,11 @@ public class Movie {
 
     @Override
     public String toString() {
-        final StringBuilder sb = new StringBuilder("Movie{");
-        sb.append("title='").append(title).append('\'');
-        sb.append(", year=").append(year);
-        sb.append('}');
+        final StringBuilder sb = new StringBuilder("");
+        sb.append(title)
+                .append(" (")
+                .append(year)
+                .append(')');
         return sb.toString();
     }
 
