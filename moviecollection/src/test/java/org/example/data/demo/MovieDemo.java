@@ -97,7 +97,11 @@ class MovieDemo {
                 new Movie("Star Wars: Episode IV - A New Hope", 1977),
                 new Movie("Indiana Jones and the Last Crusade", 1989)
         );
+        // NB: this list is unmodifiable !
+        // throws Exception: java.lang.UnsupportedOperationException
+        // movieList.add(new Movie("Indiana Jones and the Dial of Destiny", 2023));
         System.out.println(movieList);
+        System.out.println("Real type of this list: " + movieList.getClass());
         for (Movie movie: movieList) {
             System.out.println(" ~ " + movie);
         }
