@@ -1,5 +1,7 @@
 package org.example.data;
 
+import java.util.StringJoiner;
+
 /**
  * class representing a cinema movie with its title, year, duration
  */
@@ -18,6 +20,20 @@ public class Movie {
      * duration in minutes (not required)
      */
     private Integer duration;
+
+    public Movie(String title, int year, Integer duration) {
+        this.title = title;
+        this.year = year;
+        this.duration = duration;
+    }
+
+    public Movie(String title, int year) {
+        this.title = title;
+        this.year = year;
+    }
+
+    public Movie() {
+    }
 
     public String getTitle() {
         return title;
@@ -42,4 +58,22 @@ public class Movie {
     public void setDuration(Integer duration) {
         this.duration = duration;
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("Movie{");
+        sb.append("title='").append(title).append('\'');
+        sb.append(", year=").append(year);
+        sb.append('}');
+        return sb.toString();
+    }
+
+
+//    @Override
+//    public String toString() {
+//        return new StringJoiner(", ", Movie.class.getSimpleName() + "[", "]")
+//                .add("title='" + title + "'")
+//                .add("year=" + year)
+//                .toString();
+//    }
 }
