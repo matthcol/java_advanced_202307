@@ -3,6 +3,11 @@ package org.example.data.demo;
 
 import org.example.data.Movie;
 import org.junit.jupiter.api.Test;
+import org.w3c.dom.ls.LSOutput;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -20,7 +25,7 @@ class MovieDemo {
     }
 
     @Test
-    void demoConstructors() {
+    void demoConstructorsAndArray() {
         System.out.println("*** demoConstructors ***");
         // default constructor
         Movie movie1 = new Movie();
@@ -55,6 +60,47 @@ class MovieDemo {
             );
         }
 
+        System.out.println();
+    }
+
+    @Test
+    void demoArrayListMovies() {
+        System.out.println("*** demoArrayListMovies ***");
+        // create list with movies
+        // - Barbie (2023)
+        // - Oppenheimer (2023)
+        // - The Batman (2019)
+        // - Star Wars: Episode IV - A New Hope (1977)
+        List<Movie> listMovies = new ArrayList<>(); // or new LinkedList<>()
+        listMovies.add(new Movie("Barbie", 2023));
+        listMovies.add(new Movie("Oppenheimer", 2023));
+        Collections.addAll(
+                listMovies,
+                new Movie("The Batman", 2019),
+                new Movie("Star Wars: Episode IV - A New Hope", 1977),
+                new Movie("Indiana Jones and the Last Crusade", 1989)
+        );
+        for (Movie movie: listMovies) {
+            System.out.println(movie);
+        }
+        System.out.println();
+    }
+
+    @Test
+    void demoListOfMovies() {
+        System.out.println("*** demoListOfMovies ***");
+        // Java 11 (introduced in Java 9): List.of
+        List<Movie> movieList = List.of(
+                new Movie("Barbie", 2023),
+                new Movie("Oppenheimer", 2023),
+                new Movie("The Batman", 2019),
+                new Movie("Star Wars: Episode IV - A New Hope", 1977),
+                new Movie("Indiana Jones and the Last Crusade", 1989)
+        );
+        System.out.println(movieList);
+        for (Movie movie: movieList) {
+            System.out.println(" ~ " + movie);
+        }
         System.out.println();
     }
 
