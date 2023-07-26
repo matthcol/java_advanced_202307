@@ -1,13 +1,11 @@
 package org.example.data.demo;
 
 import org.example.data.Movie;
+import org.example.data.provider.MovieProvider;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.TreeSet;
+import java.util.*;
 import java.util.stream.Collectors;
 
 class MovieStreamDemo {
