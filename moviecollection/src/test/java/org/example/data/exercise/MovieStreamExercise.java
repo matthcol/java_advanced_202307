@@ -30,4 +30,9 @@ public class MovieStreamExercise {
         // TODO
     }
 
+    @Test
+    void exerciseTotalDurationMoviesFromYears2000s() {
+        // TODO
+    }
+
 }
