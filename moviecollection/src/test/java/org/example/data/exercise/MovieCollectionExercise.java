@@ -4,9 +4,7 @@ import org.example.data.Movie;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class MovieCollectionExercise {
 
@@ -51,8 +49,32 @@ public class MovieCollectionExercise {
         System.out.println("Movie list (init): " + movieList);
         // TODO:
         //  1 - index movie list in a Map<String, Movie>
+        Map<String, Movie> indexMovie = new TreeMap<>();
+        for (Movie movie: movieList){
+            indexMovie.put(movie.getTitle(), movie);
+        }
         //  2 - print map
+        System.out.println("Index: "  + indexMovie);
+        for (Map.Entry<String, Movie> entry: indexMovie.entrySet()) {
+            System.out.println("\t- "
+                    + entry.getKey()
+                    + " -> "
+                    + entry.getValue()
+            );
+        }
         //  3 - search 'The Batman' and print it if exists
+        Movie m = indexMovie.get("The Batman");
+        if (Objects.nonNull(m)) {
+            System.out.println("Found: "  + m);
+        } else {
+            System.out.println("Not found");
+        }
         //  3 - search 'Batman Begins' and print if if exists
+        Movie m2 = indexMovie.get("Batman begins");
+        if (Objects.nonNull(m2)) {
+            System.out.println("Found: "  + m2);
+        } else {
+            System.out.println("Not found");
+        }
     }
 }
