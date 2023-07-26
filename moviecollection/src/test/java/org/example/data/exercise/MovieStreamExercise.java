@@ -22,22 +22,46 @@ public class MovieStreamExercise {
 
     @Test
     void exerciseListMoviesFromYear1984(){
-        // TODO
+        var moviesFrom1984 = movieList.stream()
+                .filter(movie -> movie.getYear() == 1984)
+                .toList();
+
+        System.out.println(moviesFrom1984);
     }
 
     @Test
     void exerciseListTitlesOfMovieFromYear1984(){
-        // TODO
+        var titleMoviesFrom1984 = movieList.stream()
+                .filter(movie -> movie.getYear() == 1984)
+                .map(Movie::getTitle)
+                .toList();
+        System.out.println(titleMoviesFrom1984);
     }
 
     @Test
     void exerciceListTitlesOfMovieBefore1950BeginningByR(){
-        // TODO
+        System.out.println("Liste des films avant 1950 :");
+
+        var listOldMovieStartingWithR = movieList.stream()
+                .filter(movie -> (movie.getYear() < 1950)
+                            && movie.getTitle().startsWith("R"))
+                .map(Movie::getTitle)
+                .peek(System.out::println)
+                .toList();
+        System.out.println(listOldMovieStartingWithR);
     }
 
     @Test
     void exerciseTotalDurationMoviesFromYears2000s() {
-        // TODO
+        int totalDuration = movieList.stream()
+                .filter(movie -> (movie.getYear() >= 2000)
+                        && (movie.getYear() <= 2009))
+                // .mapToInt(movie -> movie.getDuration() != null ? movie.getDuration() : 0)
+                .filter(movie -> Objects.nonNull(movie.getDuration()))
+                .mapToInt(Movie::getDuration)
+                .sum();
+
+        System.out.println("Durée total des films des années 2000s: " + totalDuration + " minutes");
     }
 
 }
