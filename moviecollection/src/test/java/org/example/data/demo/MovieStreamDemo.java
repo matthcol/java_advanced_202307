@@ -34,4 +34,16 @@ class MovieStreamDemo {
         System.out.println();
         System.out.println();
     }
+
+    @Test
+    void demoMapPrintTitles(){
+        movieList.stream()
+                .map(movie -> movie.getTitle())
+                .forEach(title -> System.out.println(title));
+        System.out.println();
+        movieList.stream()
+                .map(Movie::getTitle)
+                .forEach(System.out::println);
+        System.out.println();
+    }
 }
