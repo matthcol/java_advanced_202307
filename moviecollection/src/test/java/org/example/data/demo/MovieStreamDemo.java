@@ -7,6 +7,10 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
+import java.util.function.Function;
+import java.util.function.IntFunction;
+import java.util.function.Predicate;
+import java.util.function.Supplier;
 import java.util.stream.Collectors;
 
 class MovieStreamDemo {
@@ -164,6 +168,31 @@ class MovieStreamDemo {
             Integer duration = null;
             int durationPrimitive = duration;
         });
+    }
+
+    @Test
+    void demoLambdaFunctions(){
+        String[] texts = { "Paris,Toulouse,Pau", "pêche,fraise,banane"};
+        Arrays.stream(texts)
+                .map((String text) -> text.split(","))
+                .forEach(splitText -> System.out.println(Arrays.toString(splitText)));
+
+        Function<String, String[]> f = (String text) -> text.split(",");
+        var res = f.apply("Vignemale,Néouvielle,Pic du Midi d'Ossau");
+        System.out.println(Arrays.toString(res));
+
+        Predicate<String> p = String::isBlank;  // p -> p.isBlank()
+        var res2 = p.test("  \t  \n\r ");
+        System.out.println(res2);
+
+//        Function<Integer, Set<String>> constructor = HashSet::new;
+        IntFunction<Set<String>> constructor = HashSet::new;
+        Set<String> set1 = constructor.apply(1000);
+        System.out.println(set1);
+
+        Supplier<Set<String>> constructor2 = HashSet::new;
+        Set<String> set2 = constructor2.get();
+        System.out.println(set2);
     }
 
 }
