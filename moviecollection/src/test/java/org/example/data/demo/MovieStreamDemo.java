@@ -46,4 +46,16 @@ class MovieStreamDemo {
                 .forEach(System.out::println);
         System.out.println();
     }
+
+    @Test
+    void demoMapFilterTitlesOfYear2023(){
+        movieList.stream()
+                .peek(movie -> System.out.println("Peek movie before filter: " + movie))
+                .filter(movie -> movie.getYear() == 2023)
+                .peek(movie -> System.out.println("Peek movie after filter: " + movie))
+                .map(Movie::getTitle)
+                .peek(title -> System.out.println("Peek title: " + title))
+                .forEach(System.out::println);
+        System.out.println();
+    }
 }
