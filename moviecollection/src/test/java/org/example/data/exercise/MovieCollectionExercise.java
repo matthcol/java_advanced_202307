@@ -49,7 +49,7 @@ public class MovieCollectionExercise {
         System.out.println("Movie list (init): " + movieList);
         // TODO:
         //  1 - index movie list in a Map<String, Movie>
-        Map<String, Movie> indexMovie = new TreeMap<>();
+        NavigableMap<String, Movie> indexMovie = new TreeMap<>();
         for (Movie movie: movieList){
             indexMovie.put(movie.getTitle(), movie);
         }
@@ -75,6 +75,17 @@ public class MovieCollectionExercise {
             System.out.println("Found: "  + m2);
         } else {
             System.out.println("Not found");
+        }
+        // 4 - add a new movie in the index and print index
+        // check that titles are sorted
+        Movie newMovie = new Movie("Pulp Fiction", 1994, 154);
+        indexMovie.put(newMovie.getTitle(), newMovie);
+        for (Map.Entry<String, Movie> entry: indexMovie.entrySet()) {
+            System.out.println("\t- "
+                    + entry.getKey()
+                    + " -> "
+                    + entry.getValue()
+            );
         }
     }
 }
