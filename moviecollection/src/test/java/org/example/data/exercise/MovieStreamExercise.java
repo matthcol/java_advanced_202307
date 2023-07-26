@@ -5,6 +5,7 @@ import org.example.data.provider.MovieProvider;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Objects;
 
 public class MovieStreamExercise {
 
@@ -12,7 +13,11 @@ public class MovieStreamExercise {
 
     @Test
     void exerciseCountMoviesWithoutDuration(){
-        // TODO
+        long count = movieList.stream()
+                .filter(movie -> Objects.isNull(movie.getDuration()))
+                .count();
+
+        System.out.println("Nombre des films sans durée : " + count);
     }
 
     @Test
