@@ -4,7 +4,11 @@ import org.example.data.Movie;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 class MovieStreamDemo {
 
@@ -71,4 +75,42 @@ class MovieStreamDemo {
                 .forEach(System.out::println);
         System.out.println();
     }
+
+    @Test
+    void demoToCollection(){
+        List<Movie> movieList2023 = movieList.stream()
+                .filter(movie -> movie.getYear() == 2023)
+                .toList(); // Java 17
+        System.out.println(movieList2023);
+        System.out.println(movieList2023.getClass());
+        System.out.println();
+
+        List<Movie> movieList2023bis = movieList.stream()
+                .filter(movie -> movie.getYear() == 2023)
+//                .collect(Collectors.toCollection(() -> new ArrayList<>()));
+                .collect(Collectors.toCollection(ArrayList::new));
+        System.out.println(movieList2023bis);
+        System.out.println(movieList2023bis.getClass());
+        System.out.println();
+
+        // movieSet2023 is seen as HashSet<Movie>, can be declared Set<Movie>
+        var movieSet2023 = movieList.stream()
+                .filter(movie -> movie.getYear() == 2023)
+                .collect(Collectors.toCollection(HashSet::new));
+        System.out.println(movieSet2023);
+        System.out.println(movieSet2023.getClass());
+        System.out.println();
+
+        // Error: Movie objects are not Comparable
+        //        var movieSet2023bis = movieList.stream()
+        //                .filter(movie -> movie.getYear() == 2023)
+        //                .collect(Collectors.toCollection(() -> new TreeSet<>()));
+        var titleSet = movieList.stream()
+                .filter(movie -> movie.getYear() != 2023)
+                .map(Movie::getTitle)
+                .collect(Collectors.toCollection(TreeSet::new));
+        System.out.println(titleSet);
+        System.out.println();
+    }
+
 }
