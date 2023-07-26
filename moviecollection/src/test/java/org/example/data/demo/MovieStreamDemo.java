@@ -58,4 +58,17 @@ class MovieStreamDemo {
                 .forEach(System.out::println);
         System.out.println();
     }
+
+    @Test
+    void demoSkipLimit() {
+        movieList.stream()
+                .limit(2)
+                .forEach(System.out::println);
+        System.out.println();
+        movieList.stream()
+                .skip(2)
+                .limit(2)
+                .forEach(System.out::println);
+        System.out.println();
+    }
 }
