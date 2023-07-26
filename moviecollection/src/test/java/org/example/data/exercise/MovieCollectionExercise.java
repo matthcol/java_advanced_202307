@@ -28,18 +28,21 @@ public class MovieCollectionExercise {
         System.out.println("*** Exercise Set ***");
         System.out.println("Movie list (init): "  + movieList);
         // TODO: copy all movies in a Set and print it
-        Set<Movie> movieSet = new HashSet<>();
-
         // Method 1: add movies from another collection with a loop
+        Set<Movie> movieSet = new HashSet<>();
         for (Movie movie : movieList){
             movieSet.add(movie);
         }
+        System.out.println("Movie set (foreach): "  +movieSet);
 
-        // Method 2: ??
+        // Method 2: with constructor
+        Set<Movie> movieSet2 = new HashSet<>(movieList);
+        System.out.println("Movie set (constructor): "  +movieSet2);
 
         // Method 3: ??
-
-        System.out.println("Movie set: "  +movieSet);
+        Set<Movie> movieSet3 = new HashSet<>();
+        movieSet3.addAll(movieList);
+        System.out.println("Movie set (addAll): "  +movieSet3);
     }
 
     @Test
