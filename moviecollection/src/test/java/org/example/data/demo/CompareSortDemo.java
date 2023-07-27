@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.*;
 
+import java.text.Collator;
 import java.text.MessageFormat;
 import java.util.*;
 import java.util.stream.Stream;
@@ -212,6 +213,29 @@ class CompareSortDemo {
         movieSorted.addAll(movies);
         System.out.println("TreeSet: " + movieSorted.stream().limit(countMovieToObserve).toList());
         System.out.println();
+    }
+
+    @Test
+    void demoSortWithLocale(){
+        String[] frenchWords = {
+                "été", "étuve", "étable",
+                "cœur", "corps", "cobra",
+                "façade", "facile", "zèbre"
+        };
+        Arrays.sort(frenchWords);
+        System.out.println(Arrays.toString(frenchWords));
+
+        Collator defaultCollator = Collator.getInstance();
+        Arrays.sort(frenchWords, defaultCollator::compare);
+        System.out.println(Arrays.toString(frenchWords));
+
+        Collator frenchCollator = Collator.getInstance(Locale.FRENCH);
+        Arrays.sort(frenchWords, defaultCollator::compare);
+        System.out.println(Arrays.toString(frenchWords));
+
+        // ESP: mañana, mano, matador
+
+
     }
 
 }
