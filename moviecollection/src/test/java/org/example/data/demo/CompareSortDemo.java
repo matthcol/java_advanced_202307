@@ -163,7 +163,10 @@ class CompareSortDemo {
                         )
                         .thenComparing(Movie::getTitle);
         // 6 - duration desc null after, title asc
-        // TODO
+        Comparator<Movie> comparatorDurationDescTitle =
+                Comparator.comparing(Movie::getDuration,
+                                Comparator.nullsLast(Comparator.reverseOrder()))
+                        .thenComparing(Movie::getTitle);
         return Stream.of(
                 Arguments.of(
                         comparatorDummy,
@@ -188,6 +191,10 @@ class CompareSortDemo {
                 Arguments.of(
                         comparatorDurationTitle,
                         "comparatorDurationTitle"
+                ),
+                Arguments.of(
+                        comparatorDurationDescTitle,
+                        "comparatorDurationDescTitle"
                 )
         );
     }
