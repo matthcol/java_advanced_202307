@@ -157,8 +157,11 @@ class CompareSortDemo {
                         .thenComparing(Movie::getTitle, String::compareToIgnoreCase);
         // 5 - duration asc null after, title asc
         Comparator<Movie> comparatorDurationTitle =
-                Comparator.comparing(Movie::getDuration); // TODO: add nullsLast
-                // TODO: + title
+                Comparator.comparing(
+                            Movie::getDuration,
+                            Comparator.nullsLast(Comparator.naturalOrder())
+                        )
+                        .thenComparing(Movie::getTitle);
         // 6 - duration desc null after, title asc
         // TODO
         return Stream.of(
