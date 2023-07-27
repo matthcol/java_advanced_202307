@@ -7,10 +7,7 @@ import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
-import java.util.function.Function;
-import java.util.function.IntFunction;
-import java.util.function.Predicate;
-import java.util.function.Supplier;
+import java.util.function.*;
 import java.util.stream.Collectors;
 
 class MovieStreamDemo {
@@ -193,6 +190,21 @@ class MovieStreamDemo {
         Supplier<Set<String>> constructor2 = HashSet::new;
         Set<String> set2 = constructor2.get();
         System.out.println(set2);
+
+        Function<String, String> funString = String::toLowerCase;
+        String newString = funString.apply("AzErTy");
+        System.out.println(newString);
+
+        UnaryOperator<String> funString2 = String::toLowerCase;
+        String newString2 = funString2.apply("aZeRtY");
+        System.out.println(newString2);
+
+        // choose an appropriate type for these lambdas
+        // in java.util.function
+        var fun1 = x -> x * x + 1;
+        var fun2 = (x,y) -> (x * y) + 2 * (x + y);
+        var fun3 = x -> x >= 1_000_000_000_000_000_000L;
+        var fun4 = (x, y) -> x < 10 * y;
     }
 
 }
