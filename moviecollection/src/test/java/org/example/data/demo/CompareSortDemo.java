@@ -152,10 +152,15 @@ class CompareSortDemo {
         Comparator<Movie> comparatorYearTitle = Comparator.comparingInt(Movie::getYear)
                 .thenComparing(Movie::getTitle);
         // 4 - year desc, title asc ignoring case
-
+        Comparator<Movie> comparatorYearDescTitleI =
+                Comparator.comparing(Movie::getYear, Comparator.reverseOrder())
+                        .thenComparing(Movie::getTitle, String::compareToIgnoreCase);
         // 5 - duration asc null after, title asc
-
+        Comparator<Movie> comparatorDurationTitle =
+                Comparator.comparing(Movie::getDuration); // TODO: add nullsLast
+                // TODO: + title
         // 6 - duration desc null after, title asc
+        // TODO
         return Stream.of(
                 Arguments.of(
                         comparatorDummy,
@@ -172,6 +177,14 @@ class CompareSortDemo {
                 Arguments.of(
                         comparatorYearTitle,
                         "comparatorYearTitle"
+                ),
+                Arguments.of(
+                        comparatorYearDescTitleI,
+                        "comparatorYearDescTitleI"
+                ),
+                Arguments.of(
+                        comparatorDurationTitle,
+                        "comparatorDurationTitle"
                 )
         );
     }
