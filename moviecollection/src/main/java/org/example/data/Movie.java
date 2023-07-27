@@ -79,8 +79,12 @@ public class Movie implements Comparable<Movie> {
      */
     @Override
     public int compareTo(Movie other) {
-        return this.getTitle().compareTo(other.getTitle());
-        // with same title, compare years
+        int cmp =  this.getTitle().compareTo(other.getTitle());
+        // with same title (cmp=0), compare years
+        if (cmp == 0) {
+            cmp = this.getYear() - other.getYear();
+        }
+        return cmp;
     }
 
     @Override
