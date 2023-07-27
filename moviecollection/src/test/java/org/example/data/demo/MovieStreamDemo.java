@@ -2,13 +2,19 @@ package org.example.data.demo;
 
 import org.example.data.Movie;
 import org.example.data.provider.MovieProvider;
+import org.example.function.IntBiPredicate;
+import org.example.function.IntTernaryOperator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
 import java.util.function.*;
+import java.util.random.RandomGenerator;
 import java.util.stream.Collectors;
+import java.util.stream.DoubleStream;
+import java.util.stream.IntStream;
+import java.util.stream.Stream;
 
 class MovieStreamDemo {
 
@@ -199,12 +205,66 @@ class MovieStreamDemo {
         String newString2 = funString2.apply("aZeRtY");
         System.out.println(newString2);
 
-        // choose an appropriate type for these lambdas
+        // Exercise: choose an appropriate type for these lambdas
         // in java.util.function
-        var fun1 = x -> x * x + 1;
-        var fun2 = (x,y) -> (x * y) + 2 * (x + y);
-        var fun3 = x -> x >= 1_000_000_000_000_000_000L;
-        var fun4 = (x, y) -> x < 10 * y;
+
+        // NB: use autoboxing:
+        // Function<Integer, Integer>
+        // UnaryOperator<Integer>, IntFunction<Integer>,
+        // ToIntFunction<Integer>
+        Function<Integer,Integer> fun1 = x -> x * x + 1;
+        // NB: without autoboxing
+        IntUnaryOperator fun1bis = x -> x * x + 1;
+
+        // DoubleBinaryOperator or IntBinaryOperator
+        DoubleBinaryOperator fun2 = (x,y) -> (x * y) + 2 * (x + y); // int or double
+
+        LongPredicate fun3 = x -> x >= 1_000_000_000_000_000_000L; // long -> boolean
+
+        // IntBiPredicate does not exist !
+        // => can use autoboxing with BiPredicate<Integer, Integer> :(
+        IntBiPredicate fun4 = (x, y) -> x < 10 * y;  // 2 x int or double -> boolean
+        IntTernaryOperator fun5 = (x, y, z) -> x + 2 * y + 3 * z;
+
+        System.out.println(fun1.apply(3));
+        System.out.println(fun3.test(Long.MAX_VALUE));
+        System.out.println(fun4.test(45, 5));
+        System.out.println(fun5.apply(1,2,3));
     }
 
+    @Test
+    void demoStreamOf(){
+        var movie1 = new Movie("Barbie", 2023);
+        var movie2 = new Movie("Oppenheimer", 2023);
+        var movie3 = new Movie("The Batman", 2022);
+        Stream.of(movie1, movie2, movie3)
+                .forEach(System.out::println);
+    }
+
+    @Test
+    void demoGenerator(){
+        IntStream.range(0, 10)
+                .forEach(i -> System.out.print(i + " "));
+        System.out.println();
+        IntStream.rangeClosed(1, 10)
+                .forEach(i -> System.out.print(i + " "));
+        System.out.println();
+        IntStream.generate(() -> 3)  // () -> int
+                .limit(10)
+                .forEach(i -> System.out.print(i + " "));
+        System.out.println();
+        DoubleStream.generate(() ->
+                    RandomGenerator.getDefault().nextGaussian(10.0, 3.5)
+                )
+                .limit(30)
+                .forEach(i -> System.out.print(i + " "));
+        System.out.println();
+        IntStream.iterate(0, x -> x + 3)
+                .limit(20)
+                .forEach(i -> System.out.print(i + " "));
+        System.out.println();
+        IntStream.iterate(2, x -> x < 50_000, x -> x * x)
+                .forEach(i -> System.out.print(i + " "));
+        System.out.println();
+    }
 }
