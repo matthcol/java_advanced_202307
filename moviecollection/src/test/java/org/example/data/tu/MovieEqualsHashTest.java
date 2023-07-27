@@ -66,7 +66,7 @@ class MovieEqualsHashTest {
 
     @ParameterizedTest
     @MethodSource("moviesNotEquals")
-    void testMovieGreaterThan(Movie movie, Object other){
+    void testMovieNotEquals(Movie movie, Object other){
         assertAll(
                 () -> assertFalse(Objects.equals(movie, other), "movie != other"),
                 () -> assertFalse(Objects.equals(movie, other), "other != movie")

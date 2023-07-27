@@ -1,11 +1,12 @@
 package org.example.data;
 
+import java.util.Objects;
 import java.util.StringJoiner;
 
 /**
  * class representing a cinema movie with its title, year, duration
  */
-public class Movie {
+public class Movie implements Comparable<Movie> {
     /**
      * original title (mandatory)
      */
@@ -69,12 +70,30 @@ public class Movie {
         return sb.toString();
     }
 
+    /**
+     * Compare 2 movies by title first (ascending), then year (ascending).
+     * This is the natural order of type Movie.
+     * @param other the object to be compared.
+     * @return integer <0 (this less than other), ==0 (this equals other),
+     * >0 (this greater than oyher)
+     */
+    @Override
+    public int compareTo(Movie other) {
+        return this.getTitle().compareTo(other.getTitle());
+        // with same title, compare years
+    }
 
-//    @Override
-//    public String toString() {
-//        return new StringJoiner(", ", Movie.class.getSimpleName() + "[", "]")
-//                .add("title='" + title + "'")
-//                .add("year=" + year)
-//                .toString();
-//    }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Movie movie = (Movie) o;
+        return (year == movie.year)
+                && Objects.equals(title, movie.title);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(title, year);
+    }
 }
