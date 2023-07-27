@@ -142,26 +142,52 @@ class CompareSortDemo {
     }
 
     static Stream<Arguments> movieComparators() {
+        // 1 - dummy comparator
         Comparator<Movie> comparatorDummy = (movie1, movie2)  -> -1;
+        // 2 - natural order
+        Comparator<Movie> comparatorNaturalOrder = Comparator.naturalOrder();
+        // 2bis - natural order
+        Comparator<Movie> comparatorNaturalOrder2 = Movie::compareTo;
+        // 3 - year asc, title asc
+        Comparator<Movie> comparatorYearTitle = Comparator.comparingInt(Movie::getYear)
+                .thenComparing(Movie::getTitle);
+        // 4 - year desc, title asc ignoring case
+
+        // 5 - duration asc null after, title asc
+
+        // 6 - duration desc null after, title asc
         return Stream.of(
-            Arguments.of(
-                    comparatorDummy,
-                    "Dummy comparator"
-            )
+                Arguments.of(
+                        comparatorDummy,
+                        "Dummy comparator"
+                ),
+                Arguments.of(
+                      comparatorNaturalOrder,
+                      "comparatorNaturalOrder"
+                ),
+                Arguments.of(
+                        comparatorNaturalOrder2,
+                        "comparatorNaturalOrder (method reference)"
+                ),
+                Arguments.of(
+                        comparatorYearTitle,
+                        "comparatorYearTitle"
+                )
         );
     }
     @ParameterizedTest
     @MethodSource("movieComparators")
     void demoSortWithComparator(Comparator<Movie> cmp, String message){
+        long countMovieToObserve = 20L;
         System.out.println("Sort movies by: " + message);
         List<Movie> movies = new ArrayList<>(MovieProvider.movieBigList());
         Collections.sort(movies, cmp);
-        System.out.println("Collections.sort(list, cmp): " + movies.stream().limit(10).toList());
+        System.out.println("Collections.sort(list, cmp): " + movies.stream().limit(countMovieToObserve).toList());
         movies.sort(cmp);
-        System.out.println("List.sort(cmp): " + movies.stream().limit(10).toList());
+        System.out.println("List.sort(cmp): " + movies.stream().limit(countMovieToObserve).toList());
         NavigableSet<Movie> movieSorted = new TreeSet<>(cmp);
         movieSorted.addAll(movies);
-        System.out.println("TreeSet: " + movieSorted.stream().limit(10).toList());
+        System.out.println("TreeSet: " + movieSorted.stream().limit(countMovieToObserve).toList());
         System.out.println();
     }
 
