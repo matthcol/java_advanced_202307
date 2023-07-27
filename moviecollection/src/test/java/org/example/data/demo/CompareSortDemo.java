@@ -1,14 +1,14 @@
 package org.example.data.demo;
 
 import org.example.data.Movie;
+import org.example.data.provider.MovieProvider;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
-import org.junit.jupiter.params.provider.NullSource;
-import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.params.provider.*;
 
 import java.text.MessageFormat;
 import java.util.*;
+import java.util.stream.Stream;
 
 class CompareSortDemo {
 
@@ -131,9 +131,38 @@ class CompareSortDemo {
                 new Movie("Star Wars: Episode IV - A New Hope", 1977),
                 new Movie("Indiana Jones and the Last Crusade", 1989)
         );
-        // Error compilation: type Movie is not Comparable
-        // Collections.sort(movies);
-        // Error execution: type Movie is not Comparable
-        // NavigableSet<Movie> movieSorted = new TreeSet<>(movies);
+        // By default: Error execution: type Movie is not Comparable
+        // OK if Movie implements Comparable<Movie>
+        NavigableSet<Movie> movieSorted = new TreeSet<>(movies);
+        System.out.println(movieSorted);
+        // By default: Error compilation: type Movie is not Comparable
+        // OK if Movie implements Comparable<Movie>
+        Collections.sort(movies);
+        System.out.println(movies);
     }
+
+    static Stream<Arguments> movieComparators() {
+        Comparator<Movie> comparatorDummy = (movie1, movie2)  -> -1;
+        return Stream.of(
+            Arguments.of(
+                    comparatorDummy,
+                    "Dummy comparator"
+            )
+        );
+    }
+    @ParameterizedTest
+    @MethodSource("movieComparators")
+    void demoSortWithComparator(Comparator<Movie> cmp, String message){
+        System.out.println("Sort movies by: " + message);
+        List<Movie> movies = new ArrayList<>(MovieProvider.movieBigList());
+        Collections.sort(movies, cmp);
+        System.out.println("Collections.sort(list, cmp): " + movies.stream().limit(10).toList());
+        movies.sort(cmp);
+        System.out.println("List.sort(cmp): " + movies.stream().limit(10).toList());
+        NavigableSet<Movie> movieSorted = new TreeSet<>(cmp);
+        movieSorted.addAll(movies);
+        System.out.println("TreeSet: " + movieSorted.stream().limit(10).toList());
+        System.out.println();
+    }
+
 }
