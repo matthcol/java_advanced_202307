@@ -78,7 +78,11 @@ public class MovieCollectionExercise {
         }
         // 4 - add a new movie in the index and print index
         // check that titles are sorted
-        Movie newMovie = new Movie("Pulp Fiction", 1994, 154);
+        Movie newMovie = Movie.builder()
+                .title("Pulp Fiction")
+                .year(1994)
+                .duration(154)
+                .build();
         indexMovie.put(newMovie.getTitle(), newMovie);
         for (Map.Entry<String, Movie> entry: indexMovie.entrySet()) {
             System.out.println("\t- "

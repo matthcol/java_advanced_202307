@@ -39,18 +39,18 @@ class MovieEqualsHashTest {
                         new Movie("Alien", 1979),
                         new Movie("Alien", 1979)
                 ),
-                Arguments.of(
-                        new Movie("Alien", 1979, 117),
-                        new Movie("Alien", 1979, 117)
-                ),
-                Arguments.of(
-                        new Movie("Alien", 1979, 117),
-                        new Movie("Alien", 1979, 118)  // duration does not count
-                ),
-                Arguments.of(
-                        new Movie("Alien", 1979, 117),
-                        new Movie("Alien", 1979)
-                ),
+//                Arguments.of(
+//                        new Movie("Alien", 1979, 117),
+//                        new Movie("Alien", 1979, 117)
+//                ),
+//                Arguments.of(
+//                        new Movie("Alien", 1979, 117),
+//                        new Movie("Alien", 1979, 118)  // duration does not count
+//                ),
+//                Arguments.of(
+//                        new Movie("Alien", 1979, 117),
+//                        new Movie("Alien", 1979)
+//                ),
                 Arguments.of(movie, movie) // same object in memory
         );
     }

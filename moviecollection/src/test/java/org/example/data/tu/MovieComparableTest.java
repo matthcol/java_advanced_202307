@@ -45,16 +45,38 @@ class MovieComparableTest {
                         new Movie("Alien", 1979)
                 ),
                 Arguments.of(
-                        new Movie("Alien", 1979, 117),
-                        new Movie("Alien", 1979, 117)
+                        Movie.builder()
+                                .title("Alien")
+                                .year(1979)
+                                .duration(117)
+                                .build(),
+                        Movie.builder()
+                                .title("Alien")
+                                .year(1979)
+                                .duration(117)
                 ),
                 Arguments.of(
-                        new Movie("Alien", 1979, 117),
-                        new Movie("Alien", 1979, 118)  // duration does not count
+                        Movie.builder()
+                                .title("Alien")
+                                .year(1979)
+                                .duration(117)
+                                .build(),
+                        Movie.builder()
+                                .title("Alien")
+                                .year(1979)
+                                .duration(118)  // duration does not count
+                                .build()
                 ),
                 Arguments.of(
-                        new Movie("Alien", 1979, 117),
-                        new Movie("Alien", 1979)
+                        Movie.builder()
+                                .title("Alien")
+                                .year(1979)
+                                .duration(117)
+                                .build(),
+                        Movie.builder()
+                                .title("Alien")
+                                .year(1979)
+                                .build()
                 )
         );
     }

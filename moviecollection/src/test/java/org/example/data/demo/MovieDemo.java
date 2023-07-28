@@ -31,8 +31,8 @@ class MovieDemo {
         Movie movie1 = new Movie();
         // constructor with title, year
         Movie movie2 = new Movie("Barbie", 2023);
-        // constructor with all fields
-        Movie movie3 = new Movie("Oppenheimer", 2023, 180);
+        // constructor with all fields (bad idea for collections!!)
+        Movie movie3 = new Movie("Oppenheimer", 2023, 180, null, null, null);
         // build Movie
         Movie movie4 = Movie.builder()
                 .title("The Batman")

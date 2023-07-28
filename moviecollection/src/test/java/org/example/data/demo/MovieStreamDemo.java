@@ -24,9 +24,21 @@ class MovieStreamDemo {
     static void initData() {
         movieList = List.of(
                 new Movie("Barbie", 2023),
-                new Movie("Oppenheimer", 2023, 180),
-                new Movie("The Batman", 2022, 176),
-                new Movie("Star Wars: Episode IV - A New Hope", 1977, 121),
+                Movie.builder()
+                        .title("Oppenheimer")
+                        .year(2023)
+                        .duration(180)
+                        .build(),
+                Movie.builder()
+                        .title("The Batman")
+                        .year(2022)
+                        .duration(176)
+                        .build(),
+                Movie.builder()
+                        .title("Star Wars: Episode IV - A New Hope")
+                        .year(1977)
+                        .duration(121)
+                        .build(),
                 new Movie("Indiana Jones and the Last Crusade", 1989)
         );
     }

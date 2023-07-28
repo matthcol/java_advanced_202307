@@ -2,8 +2,7 @@ package org.example.data;
 
 import lombok.*;
 
-import java.util.Objects;
-import java.util.StringJoiner;
+import java.util.*;
 
 /**
  * class representing a cinema movie with its title, year, duration
@@ -33,6 +32,23 @@ public class Movie implements Comparable<Movie> {
      * duration in minutes (not required)
      */
     private Integer duration;
+
+    /**
+     * genres (0, 1 or several)
+     */
+    @Builder.Default
+    private Set<String> genres = new HashSet<>();
+
+    /**
+     * director (optional)
+     */
+    private Person director;
+
+    /**
+     * actors (0, 1 or several)
+     */
+    @Builder.Default
+    private List<Person> actors = new ArrayList<>();
 
 //    public Movie(String title, int year, Integer duration) {
 //        this.title = title;
