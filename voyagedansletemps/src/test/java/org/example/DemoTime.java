@@ -59,16 +59,15 @@ public class DemoTime {
         System.out.println(datetime3);
         System.out.println(zonedDatetime4);
 
-        var format = DateTimeFormatter.ofPattern("dd/MM/YYYY HH:mm:ss");
+        var format = DateTimeFormatter.ofPattern("dd/MM/uuuu HH:mm:ss");
         System.out.println(zonedDatetime4.format(format));
 
         String isoDateTimeStr = "2020-02-29T08:30:00";
-        String frenchDateStr = "31/07/2023";
+        String frenchDateTimeStr = "31/07/2023 08:01:02";
         var datetime5 = LocalDateTime.parse(isoDateTimeStr);
-        var date6 = LocalDate.parse(frenchDateStr,
-                DateTimeFormatter.ofPattern("dd/MM/YYYY"));
+        var datetime6 = LocalDateTime.parse(frenchDateTimeStr, format);
         System.out.println(datetime5);
-        System.out.println(date6);
+        System.out.println(datetime6);
     }
 
     @Test
