@@ -27,13 +27,27 @@ class PersonTest {
 
     @Test
     void testRequiredArgsConstructor(){
+        // given
+        String name = "Zoë Kravitz";
+        // when
         var person = new Person("Zoë Kravitz");
-        System.out.println(person);
+        // then
+        //        System.out.println(person);
+        assertAll(
+                () -> assertEquals(name, person.getName(), "name"),
+                () -> assertNull(person.getBirthdate(), "birthdate")
+        );
     }
 
     @Test
     void testNoArgsConstructor(){
+        // when
         var person = new Person();
-        System.out.println(person);
+        // then
+        //        System.out.println(person);
+        assertAll(
+                () -> assertNull(person.getName(), "name"),
+                () -> assertNull(person.getBirthdate(), "birthdate")
+        );
     }
 }
