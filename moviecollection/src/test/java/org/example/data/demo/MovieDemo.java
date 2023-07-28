@@ -33,13 +33,18 @@ class MovieDemo {
         Movie movie2 = new Movie("Barbie", 2023);
         // constructor with all fields
         Movie movie3 = new Movie("Oppenheimer", 2023, 180);
+        // build Movie
+        Movie movie4 = Movie.builder()
+                .title("The Batman")
+                .year(2022)
+                .build();
 
         // with a loop display these 3 movies
         // - null (0)
         // - Barbie (2023)
         // - Oppenheimer (2023)
 
-        Movie[] tabMovies = { movie1, movie2, movie3 };
+        Movie[] tabMovies = { movie1, movie2, movie3, movie4 };
         // oldschool loop
         for (int i = 0; i < 3; i++){
             // NB: following line can be simplified by omitting .toString()

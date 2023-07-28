@@ -2,6 +2,7 @@ package org.example.data.demo;
 
 import org.example.data.Movie;
 import org.example.data.provider.MovieProvider;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.*;
@@ -73,14 +74,13 @@ class CompareSortDemo {
     @ParameterizedTest
     @ValueSource(strings = {"PAU"})
     @NullSource
-    void demoCompareStringWithNull(String text){
+    void demoCompareStringWithNullKO(String text){
         // dynamic error: null is not comparable with anything
         // except if you define an specific
-        int compare1 = text.compareTo(null);
-        System.out.println(MessageFormat.format(
-                "{0} compareTo {1}: {2}", text, null, compare1));
+        Assertions.assertThrows(NullPointerException.class,
+                () -> text.compareTo(null)
+        );
     }
-
 
     @Test
     void demoSortPrimitives(){

@@ -1,20 +1,32 @@
 package org.example.data;
 
+import lombok.*;
+
 import java.util.Objects;
 import java.util.StringJoiner;
 
 /**
  * class representing a cinema movie with its title, year, duration
  */
+@NoArgsConstructor(force = true)
+@RequiredArgsConstructor
+@AllArgsConstructor
+@Builder
+@Getter
+@Setter
+@ToString(of={"title", "year"})
+@EqualsAndHashCode(of={"title", "year"})
 public class Movie implements Comparable<Movie> {
     /**
      * original title (mandatory)
      */
+    @NonNull
     private String title;
 
     /**
      * release year (mandatory)
      */
+    @NonNull
     private int year;
 
     /**
