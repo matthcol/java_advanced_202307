@@ -36,7 +36,7 @@ public class Movie implements Comparable<Movie> {
     /**
      * genres (0, 1 or several)
      */
-    @Builder.Default
+    @Builder.Default // @Singular
     private Set<String> genres = new HashSet<>();
 
     /**

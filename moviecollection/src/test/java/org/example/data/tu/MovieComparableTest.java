@@ -54,6 +54,7 @@ class MovieComparableTest {
                                 .title("Alien")
                                 .year(1979)
                                 .duration(117)
+                                .build()
                 ),
                 Arguments.of(
                         Movie.builder()
