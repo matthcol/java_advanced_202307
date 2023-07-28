@@ -22,53 +22,53 @@ public class Movie implements Comparable<Movie> {
      */
     private Integer duration;
 
-    public Movie(String title, int year, Integer duration) {
-        this.title = title;
-        this.year = year;
-        this.duration = duration;
-    }
-
-    public Movie(String title, int year) {
-        this.title = title;
-        this.year = year;
-    }
-
-    public Movie() {
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public void setYear(int year) {
-        this.year = year;
-    }
-
-    public Integer getDuration() {
-        return duration;
-    }
-
-    public void setDuration(Integer duration) {
-        this.duration = duration;
-    }
-
-    @Override
-    public String toString() {
-        final StringBuilder sb = new StringBuilder("");
-        sb.append(title)
-                .append(" (")
-                .append(year)
-                .append(')');
-        return sb.toString();
-    }
+//    public Movie(String title, int year, Integer duration) {
+//        this.title = title;
+//        this.year = year;
+//        this.duration = duration;
+//    }
+//
+//    public Movie(String title, int year) {
+//        this.title = title;
+//        this.year = year;
+//    }
+//
+//    public Movie() {
+//    }
+//
+//    public String getTitle() {
+//        return title;
+//    }
+//
+//    public void setTitle(String title) {
+//        this.title = title;
+//    }
+//
+//    public int getYear() {
+//        return year;
+//    }
+//
+//    public void setYear(int year) {
+//        this.year = year;
+//    }
+//
+//    public Integer getDuration() {
+//        return duration;
+//    }
+//
+//    public void setDuration(Integer duration) {
+//        this.duration = duration;
+//    }
+//
+//    @Override
+//    public String toString() {
+//        final StringBuilder sb = new StringBuilder("");
+//        sb.append(title)
+//                .append(" (")
+//                .append(year)
+//                .append(')');
+//        return sb.toString();
+//    }
 
     /**
      * Compare 2 movies by title first (ascending), then year (ascending).
@@ -87,17 +87,17 @@ public class Movie implements Comparable<Movie> {
         return cmp;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Movie movie = (Movie) o;
-        return (year == movie.year)
-                && Objects.equals(title, movie.title);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(title, year);
-    }
+//    @Override
+//    public boolean equals(Object o) {
+//        if (this == o) return true;
+//        if (o == null || getClass() != o.getClass()) return false;
+//        Movie movie = (Movie) o;
+//        return (year == movie.year)
+//                && Objects.equals(title, movie.title);
+//    }
+//
+//    @Override
+//    public int hashCode() {
+//        return Objects.hash(title, year);
+//    }
 }
